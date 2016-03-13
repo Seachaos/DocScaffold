@@ -8,7 +8,7 @@ class MarkdownTest < DocScaffold::TestCase
 
   def test_markdown_to_html
     html = Markdown.new("This is *bongos*, indeed.").to_html
-    assert_true (html.to_s == "<p>This is <em>bongos</em>, indeed.</p>".to_s)
+    assert_equal html.to_s , "<p>This is <em>bongos</em>, indeed.</p>\n".to_s
   end
 
 end
