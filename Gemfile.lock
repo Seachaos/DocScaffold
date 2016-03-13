@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    power_assert (0.2.7)
+    redcarpet (3.3.4)
+    test-unit (3.1.7)
+      power_assert
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  redcarpet
+  test-unit
+
+BUNDLED WITH
+   1.10.6
