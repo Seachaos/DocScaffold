@@ -17,7 +17,7 @@ module DocScaffold
 
 	class Scaffold
 
-		def load_sub_files
+		def self.load_sub_files
 			DocScaffold::require_all('helper')
 		end
 
@@ -26,7 +26,7 @@ module DocScaffold
 		end
 
 		def main
-			load_sub_files
+			Scaffold.load_sub_files
 			@pwd = Dir.pwd
 
 			# load template
@@ -34,6 +34,7 @@ module DocScaffold
 			thtml.load(template_path_html('index.html'))
 
 			# TODO : read content, and compile
+			thtml.compile
 		end
 	end
 end
