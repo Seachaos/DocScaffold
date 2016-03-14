@@ -17,4 +17,14 @@ class CompileTest < DocScaffold::TestCase
 			assert_true thtml.tokens.include? token
 		end
 	end
+
+	def test_compile_html
+		DocScaffold::Scaffold.load_sub_files
+		thtml = DocScaffold::TemplateHTML.new
+		assert_true thtml.load('./file_for_test/template/index.html')
+		content = thtml.compile
+		assert_equal thtml.getContent, content
+		path = './file_for_test/expect/expect_test_compile.test_compile_html.txt'
+		assert_equal content, File.read(path)
+	end
 end

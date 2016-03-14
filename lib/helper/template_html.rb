@@ -4,6 +4,7 @@ module DocScaffold
 		attr_accessor :tokens
 
 		def load(path)
+			@file_path = path
 			begin
 				content = File.read(path)
 				return false if content.empty?
@@ -16,7 +17,7 @@ module DocScaffold
 
 		def compile
 			token = /\{\{.*?\}\}/.match(@content)
-			return unless token
+			return @content unless token
 			token = token.to_s
 			self.tokens = [] unless self.tokens
 			self.tokens.push token
@@ -28,14 +29,23 @@ module DocScaffold
 			@content = str
 		end
 
+		def getContent
+			return @content
+		end
+
 		def debug()
 			puts @content
 		end
 
 		protected
 
-		def _compile_load_files
-			return '__TODO__FILE'
+		# call by _compile_content
+		def _compile_load_files(file)
+			return '' unless @file_path
+			path = File.join(File.dirname(@file_path),  file)
+			thtml = TemplateHTML.new
+			thtml.load(path)
+			thtml.compile
 		end
 
 		def _compile_content(content, token)
@@ -43,7 +53,7 @@ module DocScaffold
 			coin = token[2..token.length-3]
 			coins = coin.split(' ')
 			if coins.length == 1 then
-				return content.gsub(token, _compile_load_files)
+				return content.gsub(token, _compile_load_files(coins[0]))
 			end
 
 			# else TODO

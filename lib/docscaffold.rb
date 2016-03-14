@@ -10,7 +10,6 @@ module DocScaffold
 	def self.require_all(path)
 	  glob = File.join(File.dirname(__FILE__), path, '*.rb')
 	  Dir[glob].each do |f|
-	  	puts f.to_s
 	    require f
 	  end
 	end
@@ -31,7 +30,7 @@ module DocScaffold
 
 			# load template
 			thtml = TemplateHTML.new
-			thtml.load(template_path_html('index.html'))
+			thtml.load(Scaffold.template_path_html('index.html'))
 
 			# TODO : read content, and compile
 			thtml.compile
