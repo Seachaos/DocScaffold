@@ -1,3 +1,5 @@
 <html>
 CONTENT_OF_HEADER_HTML
+<div>Footer<div></div>
+sub_footer.htmlCONTENT_OF_HEADER_HTML</div>
 </html>
