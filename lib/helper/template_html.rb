@@ -12,6 +12,7 @@ module DocScaffold
 				return false
 			end
 			@content = content
+			@content = '' unless @content
 			return true
 		end
 
@@ -53,6 +54,12 @@ module DocScaffold
 			coin = token[2..token.length-3]
 			coins = coin.split(' ')
 			if coins.length == 1 then
+				case coins[0]
+					when 'menu'
+						return content.gsub(token, '[[_menu_]]')
+					when 'post'
+						return content.gsub(token, '[[_post_]]')
+				end
 				return content.gsub(token, _compile_load_files(coins[0]))
 			end
 

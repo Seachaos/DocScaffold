@@ -27,4 +27,13 @@ class CompileTest < DocScaffold::TestCase
 		path = './file_for_test/expect/expect_test_compile.test_compile_html.txt'
 		assert_equal content, File.read(path)
 	end
+
+	def test_compile_with_post
+		DocScaffold::Scaffold.load_sub_files
+		thtml = DocScaffold::TemplateHTML.new
+
+		assert_true thtml.load('./file_for_test/template/test_post_index.html')
+		content = thtml.compile
+
+	end
 end
