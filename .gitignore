@@ -1,3 +1,5 @@
+develop_demo/output/
+
 .DS_Store
 Gemfile.lock
 *.gem

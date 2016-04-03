@@ -3,6 +3,7 @@
 Encoding.default_internal = 'UTF-8'
 
 require 'redcarpet/compat'
+require 'fileutils'
 require 'json'
 
 module DocScaffold

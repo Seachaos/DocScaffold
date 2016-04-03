@@ -1,5 +1,4 @@
 /#{
-	"category" : "API",
 	"name" : "good"
 }#/
 *MD* test
@@ -30,7 +29,7 @@ File 3<br />
 <table></table>
 
 /#{
-	"name" : "API for view.init"
+	"name" : "API for view"
 }#/
 GoodHere is example
 
