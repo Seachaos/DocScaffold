@@ -33,10 +33,11 @@ module DocScaffold
 		end
 
 		def get_info_from_content(f)
-			basename = File.basename(f)
+			basename = File.basename(f, '.*')
 			info = {
 				:content => @content,
 				:info => {
+					:order => 0,
 					:category => '',
 					:dir => '',
 					:file_name => basename,
@@ -78,15 +79,18 @@ module DocScaffold
 					end
 
 					info[:info][:file_name] = convertFileName(name)
+					info[:info][:file_name] = convertFileName(json['file_name']) unless json['file_name'].nil?
 					info[:info][:name] = name
 					info[:info][:escape_html] = json['escape_html'] unless json['escape_html'].nil?
 
 					# putsYellow json
 					# putsWhite info[:info]
 
+					newInfo = info[:info].clone
+					newInfo[:order] = json['order'] unless json['order'].nil?
 					infos.push({
 						:content => text,
-						:info => info[:info].clone
+						:info => newInfo
 					})
 				rescue  => e
 					putsRed e
@@ -97,9 +101,9 @@ module DocScaffold
 		end
 
 		def convertFileName(name)
+			name = File.basename(name, '.*')
 			name = name.downcase
-			name.gsub!(/\s/, '_')
-			name.gsub!(/\./, '_')
+			name = name.gsub(/\W/,'_')
 			return name
 		end
 

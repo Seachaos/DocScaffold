@@ -38,9 +38,31 @@ module DocScaffold
 
 		def genMenuHTML
 			html = ''
-			posts = @posts.sort { |a, b|
-				b[:info][:category] <=> a[:info][:category]
+
+			# prepare for order
+			posts = @posts.map { |post|
+				post = post.clone
+				if post[:info][:category].empty? then
+					post[:info][:category_order] = '0'
+				else
+					post[:info][:category_order] = post[:info][:category]
+				end
+				post
 			}
+
+			# order
+			posts = posts.sort { |a, b|
+				resp = a[:info][:category_order] <=> b[:info][:category_order]
+				if resp == 0
+					resp = a[:info][:order] <=> b[:info][:order]
+				end
+				if resp == 0
+					resp = a[:info][:name] <=> b[:info][:name]
+				end
+				resp
+			}
+
+			
 			category_in = false
 			posts.each do |post|
 				info = post[:info]
