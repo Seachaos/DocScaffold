@@ -1,4 +1,5 @@
 develop_demo/output/
+documents/output/
 
 .DS_Store
 Gemfile.lock
