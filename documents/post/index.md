@@ -6,7 +6,7 @@
 ## Welcome use DocScaffold
 
 這是一個簡單用來產生API文件的Ruby程式，以Markdown語法為主  
-This programe is easy for generate API docmenu, it's using Markdown.
+This program is easy for generate API document, it's using Markdown.
 
 範例檔案：  
 Example File：  
