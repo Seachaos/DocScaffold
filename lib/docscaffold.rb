@@ -3,6 +3,7 @@
 Encoding.default_internal = 'UTF-8'
 
 require 'redcarpet/compat'
+require 'json'
 
 module DocScaffold
 	VERSION = '0.1.0'
@@ -27,6 +28,7 @@ module DocScaffold
 			thtml.load(path_template_html('index.html'))
 			# get template
 			@template = thtml.compile
+			thtml.copyResource
 		end
 
 		def load_post

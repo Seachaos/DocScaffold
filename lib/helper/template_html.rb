@@ -38,6 +38,12 @@ module DocScaffold
 			puts @content
 		end
 
+		def copyResource
+			path = File.dirname(@file_path)
+			path.gsub!(/\s/, '\ ');
+			system 'cp -r '+path + '/* ./output'
+		end
+
 		protected
 
 		# call by _compile_content
